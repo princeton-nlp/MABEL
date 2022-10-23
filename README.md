@@ -1,10 +1,15 @@
-## MABEL: Contrastive Gender Bias Mitigation using Entailment Pairs
+## MABEL: Attenuating Gender Bias using Textual Entailment Data
 
 Authors: [Jacqueline He](https://jacqueline-he.github.io/), [Mengzhou Xia](https://xiamengzhou.github.io/), [Christiane Fellbaum](https://www.cs.princeton.edu/~fellbaum/), [Danqi Chen](https://www.cs.princeton.edu/~danqic/)
+
+This repository contains the code for our paper, "MABEL: Attenuating Gender Bias using Textual Entailment Data." 
 
 **MABEL** (a **M**ethod for **A**ttenuating **B**ias using **E**ntailment **L**abels) is a task-agnostic intermediate pre-training technique that leverages entailment pairs from NLI data to produce 
 representations which are both semantically capable and fair. 
 This approach exhibits a good fairness-performance tradeoff across intrinsic and extrinsic gender bias diagnostics, with minimal damage on natural language understanding tasks. 
+
+![Training Schema](figure/teaser.png)
+
 
 ## Table of Contents
   * [Quick Start](#quick-start)
@@ -28,6 +33,8 @@ model = AutoModelForMaskedLM.from_pretrained("jacquelinehe/mabel-bert-base-uncas
 ```
 
 ## Training
+
+Before training, make sure that the [counterfactually-augmented data](https://drive.google.com/file/d/19deluERQrAI81ETRbySyZ_7ilKYt78DD/view?usp=sharing), processed from SNLI and MNLI data, is downloaded and stored under the `training` directory as `entailment_data.csv`. 
 
 **1. Install package dependencies**
 
@@ -90,8 +97,6 @@ Num. neutral: 0.0
 
 ### Extrinsic Metrics
 
-Below are the instructions for training MABEL on our three extrinsic tasks. 
-
 1. Occupation Classification 
 
 See `benchmark/extrinsic/occ_cls/README.md` for full training instructions.
@@ -108,7 +113,7 @@ See `benchmark/extrinsic/coref/README.md` for full training instructions.
 ### Language Understanding 
 **1. GLUE ([Wang et al., 2018](https://aclanthology.org/W18-5446/))** 
 
-We fine-tune on GLUE through the [transformers](https://github.com/huggingface/transformers/tree/main/examples/pytorch/text-classification) library, following all default hyper-parameters. 
+We fine-tune on GLUE through the [transformers](https://github.com/huggingface/transformers/tree/main/examples/pytorch/text-classification) library, following the default hyper-parameters. 
 
 A straightforward way is to download the current transformers repository:
 
@@ -155,7 +160,7 @@ Make sure you have cloned the [SentEval](https://github.com/facebookresearch/Sen
 
 Command:
 
-`python -m benchmark.transfer.eval --model_name_or_path jacquelinehe/mabel-bert-base-uncased` --task_set transfer --mode fasttest
+`python -m benchmark.transfer.eval --model_name_or_path jacquelinehe/mabel-bert-base-uncased --task_set transfer`
 
 Output:
 

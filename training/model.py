@@ -81,7 +81,7 @@ class Pooler(nn.Module):
             "avg_top2",
             "avg_first_last",
         ], (
-            "unrecognized pooling type %s" % cls.pooler_type
+            "unrecognized pooling type %s" % self.pooler_type
         )
 
     def forward(self, attention_mask, outputs):
@@ -289,7 +289,7 @@ def cl_forward(
         aug_z0_mask = torch.gt(bin_mask[:, 2], 0)
 
     if dist.is_initialized() and cls.training:
-        # Gather hard negative
+        # Gather hard negative - not used in paper
         if num_sent == 6:
             hard_orig_list = [
                 torch.zeros_like(hard_orig) for _ in range(dist.get_world_size())
@@ -522,7 +522,7 @@ class BertForMabel(BertPreTrainedModel):
             )
 
 
-# RoBERTa is not used in the paper
+# RoBERTa is not used in this paper
 class RobertaForMabel(RobertaPreTrainedModel):
     _keys_to_ignore_on_load_missing = [r"position_ids"]
 

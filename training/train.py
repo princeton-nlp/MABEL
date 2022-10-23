@@ -54,6 +54,8 @@ MODEL_CONFIG_CLASSES = list(MODEL_FOR_MASKED_LM_MAPPING.keys())
 MODEL_TYPES = tuple(conf.model_type for conf in MODEL_CONFIG_CLASSES)
 
 assert torch.cuda.is_available()
+if is_torch_tpu_available():
+    import torch_xla.core.xla_model as xm
 
 
 @dataclass
@@ -243,15 +245,6 @@ class DataTrainingArguments:
 
 @dataclass
 class OurTrainingArguments(TrainingArguments):
-    # Evaluation
-    ## By default, we evaluate STS (dev) during training (for selecting best checkpoints) and evaluate
-    ## both STS and transfer tasks (dev) at the end of training. Using --eval_transfer will allow evaluating
-    ## both STS and transfer tasks (dev) during training.
-    eval_transfer: bool = field(
-        default=False,
-        metadata={"help": "Evaluate transfer task dev sets (in validation)."},
-    )
-
     report_to: str = field(
         default="wandb",
     )
@@ -278,25 +271,7 @@ class OurTrainingArguments(TrainingArguments):
             # the default value.
             self._n_gpu = torch.cuda.device_count()
         else:
-            # Here, we'll use torch.distributed.
-            # Initializes the distributed backend which will take care of synchronizing nodes/GPUs
-            #
-            # deepspeed performs its own DDP internally, and requires the program to be started with:
-            # deepspeed  ./program.py
-            # rather than:
-            # python -m torch.distributed.launch --nproc_per_node=2 ./program.py
-            if self.deepspeed:
-                from .integrations import is_deepspeed_available
-
-                if not is_deepspeed_available():
-                    raise ImportError(
-                        "--deepspeed requires deepspeed: `pip install deepspeed`."
-                    )
-                import deepspeed
-
-                deepspeed.init_distributed()
-            else:
-                torch.distributed.init_process_group(backend="nccl")
+            torch.distributed.init_process_group(backend="nccl")
             device = torch.device("cuda", self.local_rank)
             self._n_gpu = 1
 
@@ -307,16 +282,10 @@ class OurTrainingArguments(TrainingArguments):
 
 
 def main():
-    # See all possible arguments in src/transformers/training_args.py
-    # or by passing the --help flag to this script.
-    # We now keep distinct sets of args, for a cleaner separation of concerns.
-
     parser = HfArgumentParser(
         (ModelArguments, DataTrainingArguments, OurTrainingArguments)
     )
     if len(sys.argv) == 2 and sys.argv[1].endswith(".json"):
-        # If we pass only one argument to the script and it's the path to a json file,
-        # let's parse it to get our arguments.
         model_args, data_args, training_args = parser.parse_json_file(
             json_file=os.path.abspath(sys.argv[1])
         )
@@ -357,16 +326,6 @@ def main():
 
     # Set seed before initializing model.
     set_seed(training_args.seed)
-
-    # Get the datasets: you can either provide your own CSV/JSON/TXT training and evaluation files (see below)
-    # or just provide the name of one of the public datasets available on the hub at https://huggingface.co/datasets/
-    # (the dataset will be downloaded automatically from the datasets Hub
-    #
-    # For CSV/JSON files, this script will use the column called 'text' or the first column. You can easily tweak this
-    # behavior (see below)
-    #
-    # In distributed training, the load_dataset function guarantee that only one local process can concurrently
-    # download the dataset.
     data_files = {}
     if data_args.train_file is not None:
         data_files["train"] = data_args.train_file
@@ -500,13 +459,6 @@ def main():
         raise NotImplementedError
 
     def prepare_features(examples):
-        # padding = longest (default)
-        #   If no sentence in the batch exceed the max length, then use
-        #   the max sentence length in the batch, otherwise use the
-        #   max sentence length in the argument and truncate those that
-        #   exceed the max length.
-        # padding = max_length (when pad_to_max_length, for pressure test)
-        #   All sentences are padded/truncated to data_args.max_seq_length.
         # sent0_cname = 'orig_sent0'
         # sent1_cname = 'orig_sent1'
         # sent2_cname = 'aug_sent0'
@@ -544,31 +496,16 @@ def main():
                 [map0[i], map1[i], map2[i], map3[i]] for i in range(total)
             ]
 
-        if sent4_cname is not None:
-            for key in sent_features:
-                features[key] = [
-                    [
-                        sent_features[key][i],
-                        sent_features[key][i + total],
-                        sent_features[key][i + total * 2],
-                        sent_features[key][i + total * 3],
-                        sent_features[key][i + total * 4],
-                        sent_features[key][i + total * 5],
-                    ]
-                    for i in range(total)
+        for key in sent_features:
+            features[key] = [
+                [
+                    sent_features[key][i],
+                    sent_features[key][i + total],
+                    sent_features[key][i + total * 2],
+                    sent_features[key][i + total * 3],
                 ]
-            features["bin"] = [map0, map1, map2, map3]
-        else:
-            for key in sent_features:
-                features[key] = [
-                    [
-                        sent_features[key][i],
-                        sent_features[key][i + total],
-                        sent_features[key][i + total * 2],
-                        sent_features[key][i + total * 3],
-                    ]
-                    for i in range(total)
-                ]
+                for i in range(total)
+            ]
 
         return features
 

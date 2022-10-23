@@ -190,7 +190,8 @@ def main():
     )
     parser.add_argument("--model_name_or_path", type=str, default="bert-base-uncased")
     parser.add_argument("--batch_size", type=int, default=64)
-    parser.add_argument("--num_epochs", default=2)
+    parser.add_argument("--random_seed", type=int, default=42)
+    parser.add_argument("--num_epochs", type=int, default=3)
     parser.add_argument("--lr", type=float, default=0.00005)
     parser.add_argument("--load_from_file", type=str, default=None)
     parser.add_argument(
@@ -198,7 +199,7 @@ def main():
         action="store_true",
         help="whether or not to update encoder; default False",
     )
-    parser.add_argument("--eval_dataset_path", type=str, default=None)
+    parser.add_argument("--eval_dataset_path", type=str, default="bias-nli.csv")
 
     args = parser.parse_args()
     if os.path.exists(args.ckpt_dir):
@@ -246,9 +247,6 @@ def main():
     train_dataset = datasets["train"]
     train_dataset = train_dataset.filter(lambda x: x["label"] != -1)
 
-    eval_dataset = datasets["validation"]
-    eval_dataset = eval_dataset.filter(lambda x: x["label"] != -1)
-
     # Log a few random samples from the training set:
     for index in random.sample(range(len(train_dataset)), 1):
         logger.warning(f"Sample {index} of the training set: {train_dataset[index]}.")
@@ -263,7 +261,7 @@ def main():
         split="train[:5%]",
         cache_dir=args.cache_dir,
     )
-    eval_dataset = eval_dataset.shuffle(seed=42)
+    eval_dataset = eval_dataset.shuffle(seed=args.random_seed)
     eval_dataset = eval_dataset.map(
         preprocess_function, batched=True, load_from_cache_file=True
     )
@@ -286,11 +284,11 @@ def main():
     if args.dataparallel:
         optimizer = AdamW(
             (p for p in model.module.parameters() if p.requires_grad), lr=args.lr
-        )  # only cls parameters
+        )
     else:
         optimizer = AdamW(
             (p for p in model.parameters() if p.requires_grad), lr=args.lr
-        )  # only cls parameters
+        )
 
     scheduler = LinearLR(optimizer)
 

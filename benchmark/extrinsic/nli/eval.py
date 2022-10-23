@@ -35,7 +35,7 @@ def main():
     parser.add_argument("--tau2", type=float, default=0.7)
     parser.add_argument("--cache_dir", default=None, type=str, help="cache directory")
     parser.add_argument("--model_name_or_path", default="bert-base-uncased")
-    parser.add_argument("--data_path", type=str, default="nli-dataset.csv")
+    parser.add_argument("--eval_data_path", type=str, default="bias-nli.csv")
     parser.add_argument(
         "--load_from_file",
         type=str,
@@ -55,7 +55,7 @@ def main():
     states = torch.load(args.load_from_file, map_location=torch.device(args.device))[
         "states"
     ]
-    model.load_state_dict(states)  # check debias flag
+    model.load_state_dict(states)
     model.eval()
 
     def preprocess_function(examples):
@@ -69,7 +69,10 @@ def main():
         return result
 
     eval_dataset = load_dataset(
-        "csv", data_files=args.data_path, split="train[:-10%]", cache_dir=args.cache_dir
+        "csv",
+        data_files=args.eval_data_path,
+        split="train[:-10%]",
+        cache_dir=args.cache_dir,
     )
     eval_dataset = eval_dataset.shuffle(seed=42)
     eval_dataset = eval_dataset.map(
