@@ -1,4 +1,4 @@
-## MABEL: Contrastive Gender Bias Mitigation using Entailment Pairs
+## MABEL: Attenuating Gender Bias using Textual Entailment Data
 
 Authors: [Jacqueline He](https://jacqueline-he.github.io/), [Mengzhou Xia](https://xiamengzhou.github.io/), [Christiane Fellbaum](https://www.cs.princeton.edu/~fellbaum/), [Danqi Chen](https://www.cs.princeton.edu/~danqic/)
 
@@ -155,7 +155,7 @@ Make sure you have cloned the [SentEval](https://github.com/facebookresearch/Sen
 
 Command:
 
-`python -m benchmark.transfer.eval --model_name_or_path jacquelinehe/mabel-bert-base-uncased` --task_set transfer --mode fasttest
+`python -m benchmark.transfer.eval --model_name_or_path jacquelinehe/mabel-bert-base-uncased --task_set transfer`
 
 Output:
 
