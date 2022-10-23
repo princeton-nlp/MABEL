@@ -6,7 +6,7 @@ export OMP_NUM_THREADS=8
 
 ## hyperparams ##
 MAX_SEQ=128
-DATA_PATH='data/joint_entailment_fixed.csv'
+DATA_PATH='entailment_data.csv'
 CACHE_DIR='.cache'
 BS=32
 LR=5e-5
