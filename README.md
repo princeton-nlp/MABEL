@@ -27,9 +27,9 @@ With the `transformers` package installed, you can import the off-the-shelf mode
 ```
 from transformers import AutoTokenizer, AutoModelForMaskedLM
 
-tokenizer = AutoTokenizer.from_pretrained("jacquelinehe/mabel-bert-base-uncased")
+tokenizer = AutoTokenizer.from_pretrained("princeton-nlp/mabel-bert-base-uncased")
 
-model = AutoModelForMaskedLM.from_pretrained("jacquelinehe/mabel-bert-base-uncased")
+model = AutoModelForMaskedLM.from_pretrained("princeton-nlp/mabel-bert-base-uncased")
 ```
 
 ## Training
@@ -62,7 +62,7 @@ Please note that if you use your own trained model instead of our HF checkpoint,
 Command:
 
 ``` 
-python -m benchmark.intrinsic.stereoset.predict --model_name_or_path jacqueline-he/mabel-bert-base-uncased && 
+python -m benchmark.intrinsic.stereoset.predict --model_name_or_path princeton-nlp/mabel-bert-base-uncased && 
 python -m benchmark.intrinsic.stereoset.eval
 ```
 
@@ -81,7 +81,7 @@ ICAT Score: 73.98003496789251
 
 Command: 
 
-```python -m benchmark.intrinsic.crows.eval --model_name_or_path jacquelinehe/mabel-bert-base-uncased```
+```python -m benchmark.intrinsic.crows.eval --model_name_or_path princeton-nlp/mabel-bert-base-uncased```
 
 
 Output: 
@@ -139,7 +139,7 @@ export TASK_NAME=mrpc
 export OUTPUT_DIR=out/
 
 CUDA_VISIBLE_DEVICES=0 python run_glue.py \
-  --model_name_or_path jacquelinehe/mabel-bert-base-uncased \
+  --model_name_or_path princeton-nlp/mabel-bert-base-uncased \
   --task_name $TASK_NAME \
   --do_train \
   --do_eval \
@@ -160,7 +160,7 @@ Make sure you have cloned the [SentEval](https://github.com/facebookresearch/Sen
 
 Command:
 
-`python -m benchmark.transfer.eval --model_name_or_path jacquelinehe/mabel-bert-base-uncased --task_set transfer`
+`python -m benchmark.transfer.eval --model_name_or_path princeton-nlp/mabel-bert-base-uncased --task_set transfer`
 
 Output:
 
