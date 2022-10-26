@@ -24,7 +24,7 @@ This approach exhibits a good fairness-performance tradeoff across intrinsic and
 
 With the `transformers` package installed, you can import the off-the-shelf model like so: 
 
-```
+```python
 from transformers import AutoTokenizer, AutoModelForMaskedLM
 
 tokenizer = AutoTokenizer.from_pretrained("princeton-nlp/mabel-bert-base-uncased")
@@ -38,13 +38,13 @@ Before training, make sure that the [counterfactually-augmented data](https://dr
 
 **1. Install package dependencies**
 
-```
+```bash
 pip install -r requirements.txt
 ```
 
 **2. Run training script**
 
-```
+```bash
 cd training
 chmod +x run.sh 
 ./run.sh
@@ -61,7 +61,7 @@ Please note that if you use your own trained model instead of our HF checkpoint,
 
 Command:
 
-``` 
+```bash
 python -m benchmark.intrinsic.stereoset.predict --model_name_or_path princeton-nlp/mabel-bert-base-uncased && 
 python -m benchmark.intrinsic.stereoset.eval
 ```
@@ -81,7 +81,9 @@ ICAT Score: 73.98003496789251
 
 Command: 
 
-```python -m benchmark.intrinsic.crows.eval --model_name_or_path princeton-nlp/mabel-bert-base-uncased```
+```bash
+python -m benchmark.intrinsic.crows.eval --model_name_or_path princeton-nlp/mabel-bert-base-uncased
+```
 
 
 Output: 
@@ -117,7 +119,7 @@ We fine-tune on GLUE through the [transformers](https://github.com/huggingface/t
 
 A straightforward way is to download the current transformers repository:
 
-```
+```bash
 git clone https://github.com/huggingface/transformers
 cd transformers
 pip install .
@@ -125,7 +127,7 @@ pip install .
 
 Then set up the environment dependencies:
 
-```
+```bash
 cd ./examples/pytorch/text-classification
 pip install -r requirements.txt
 ```
@@ -133,7 +135,7 @@ pip install -r requirements.txt
 
 Here is a sample script for one of the GLUE tasks, MRPC:
 
-```
+```bash
 # task options: cola, sst2, mrpc, stsb, qqp, mnli, qnli, rte 
 export TASK_NAME=mrpc
 export OUTPUT_DIR=out/
@@ -160,7 +162,9 @@ Make sure you have cloned the [SentEval](https://github.com/facebookresearch/Sen
 
 Command:
 
-`python -m benchmark.transfer.eval --model_name_or_path princeton-nlp/mabel-bert-base-uncased --task_set transfer`
+```bash
+python -m benchmark.transfer.eval --model_name_or_path princeton-nlp/mabel-bert-base-uncased --task_set transfer
+```
 
 Output:
 
