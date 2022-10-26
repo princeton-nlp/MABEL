@@ -361,7 +361,7 @@ def cl_forward(
         c_loss = loss_fct(cos_sim, labels)
 
     if cls.model_args.a1_loss:
-        if num_sent == 6:
+        if num_sent == 6:  # hard orig
             orig_z0 = torch.cat((orig_z0, hard_orig))
             aug_z0 = torch.cat((aug_z0, hard_aug))
         orig_cos_sim = cls.c_sim(orig_z0.unsqueeze(1), orig_z1.unsqueeze(0))
@@ -371,7 +371,6 @@ def cl_forward(
     if cls.model_args.a2_loss:
         a_loss = align_loss_fct(orig_z0, aug_z0)
         a_loss += align_loss_fct(orig_z1, aug_z1)
-        # wandb.log({'align 2 loss': a_loss})
 
     if cls.model_args.a3_loss:
         orig = torch.cat((orig_z0, orig_z1))

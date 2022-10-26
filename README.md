@@ -34,7 +34,7 @@ model = AutoModelForMaskedLM.from_pretrained("princeton-nlp/mabel-bert-base-unca
 
 ## Training
 
-Before training, make sure that the [counterfactually-augmented data](https://drive.google.com/file/d/19deluERQrAI81ETRbySyZ_7ilKYt78DD/view?usp=sharing), processed from SNLI and MNLI data, is downloaded and stored under the `training` directory as `entailment_data.csv`. 
+Before training, make sure that the [counterfactually-augmented NLI data](https://drive.google.com/file/d/19deluERQrAI81ETRbySyZ_7ilKYt78DD/view?usp=sharing), processed from SNLI and MNLI, is downloaded and stored under the `training` directory as `entailment_data.csv`. 
 
 **1. Install package dependencies**
 
@@ -55,7 +55,7 @@ You can configure the hyper-parameters in `run.sh` accordingly. Models are saved
 
 ### Intrinsic Metrics 
 
-Please note that if you use your own trained model instead of our HF checkpoint, you need to first run `python -m benchmark.intrinsic.convert_to_hf --path /path/to/your/checkpoint` (which converts the checkpoint to a standard BertForMaskedLM model) prior to intrinsic evaluation.
+Please note that if you use your own trained model instead of our HF checkpoint, you need to first run `python -m training.convert_to_hf --path /path/to/your/checkpoint` (which converts the checkpoint to a standard BertForMaskedLM model) prior to intrinsic evaluation.
 
 **1. StereoSet ([Nadeem et al., 2021](https://aclanthology.org/2021.acl-long.416/))**
 
