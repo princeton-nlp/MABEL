@@ -2,7 +2,7 @@
 
 Authors: [Jacqueline He](https://jacqueline-he.github.io/), [Mengzhou Xia](https://xiamengzhou.github.io/), [Christiane Fellbaum](https://www.cs.princeton.edu/~fellbaum/), [Danqi Chen](https://www.cs.princeton.edu/~danqic/)
 
-This repository contains the code for our paper, [MABEL: Attenuating Gender Bias using Textual Entailment Data](https://arxiv.org/pdf/2210.14975.pdf). 
+This repository contains the code for our EMNLP 2022 paper, [MABEL: Attenuating Gender Bias using Textual Entailment Data](https://arxiv.org/pdf/2210.14975.pdf). 
 
 **MABEL** (a **M**ethod for **A**ttenuating **B**ias using **E**ntailment **L**abels) is a task-agnostic intermediate pre-training technique that leverages entailment pairs from NLI data to produce 
 representations which are both semantically capable and fair. 
