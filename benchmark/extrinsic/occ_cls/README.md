@@ -9,7 +9,7 @@ Note that this dataset originally had 397,340 biographies; when we downloaded th
 ### Training 
 
 Run this command to fine-tune MABEL: 
-`python train.py --model_name_or_path jacqueline-he/mabel-bert-base-uncased --ckpt_dir bios-mabel`  
+`python train.py --model_name_or_path princeton-nlp/mabel-bert-base-uncased --ckpt_dir bios-mabel`  
 
 MABEL will periodically evaluate on the validation set, and save the checkpoint with the highest total accuracy into the `bios-mabel` directory. 
 

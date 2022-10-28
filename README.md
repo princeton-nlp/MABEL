@@ -34,7 +34,7 @@ model = AutoModelForMaskedLM.from_pretrained("princeton-nlp/mabel-bert-base-unca
 
 ## Training
 
-Before training, make sure that the [counterfactually-augmented NLI data](https://drive.google.com/file/d/19deluERQrAI81ETRbySyZ_7ilKYt78DD/view?usp=sharing), processed from SNLI and MNLI, is downloaded and stored under the `training` directory as `entailment_data.csv`. 
+Before training, make sure that the [counterfactually-augmented NLI data](https://drive.google.com/file/d/16KPp0rZv2DqAumccaRgvpLW4NwRCfdl6/view?usp=sharing), processed from SNLI and MNLI, is downloaded and stored under the `training` directory as `entailment_data.csv`. 
 
 **1. Install package dependencies**
 
