@@ -2,7 +2,7 @@
 
 Authors: [Jacqueline He](https://jacqueline-he.github.io/), [Mengzhou Xia](https://xiamengzhou.github.io/), [Christiane Fellbaum](https://www.cs.princeton.edu/~fellbaum/), [Danqi Chen](https://www.cs.princeton.edu/~danqic/)
 
-This repository contains the code for our EMNLP 2022 paper, [MABEL: Attenuating Gender Bias using Textual Entailment Data](https://arxiv.org/pdf/2210.14975.pdf). 
+This repository contains the code for our EMNLP 2022 paper, ["MABEL: Attenuating Gender Bias using Textual Entailment Data"](https://arxiv.org/pdf/2210.14975.pdf). 
 
 **MABEL** (a **M**ethod for **A**ttenuating **B**ias using **E**ntailment **L**abels) is a task-agnostic intermediate pre-training technique that leverages entailment pairs from NLI data to produce 
 representations which are both semantically capable and fair. 
@@ -179,6 +179,8 @@ Output:
 
 ## Code Acknowledgements
 - Evaluation code for StereoSet and CrowS-Pairs is adapted from ["An Empirical Survey of the Effectiveness of Debiasing Techniques for Pre-trained Language Models"](https://aclanthology.org/2022.acl-long.132/) (Meade et al., 2022). 
+- Model implementation code is adapted from [SimCSE](https://github.com/princeton-nlp/SimCSE/blob/main/evaluation.py) (Gao et al., 2021). 
 - Evaluation code for the transfer tasks relies on the SentEval package [here](https://github.com/facebookresearch/SentEval), and adapts from a script prepared by [SimCSE](https://github.com/princeton-nlp/SimCSE/blob/main/evaluation.py) (Gao et al., 2021). 
 - Evaluation code for GLUE relies on the Huggingface implementation of the [transformers](https://arxiv.org/abs/1910.03771) (Wolf et al., 2019) package.
+- Training and evaluation for e2e span-based coreference resolution follows from [this Pytorch implementation](https://aclanthology.org/2020.emnlp-main.686/) (Xu and Choi, 2020).
 - Repository is formatted with [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black).
