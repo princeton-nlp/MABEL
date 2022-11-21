@@ -1,11 +1,11 @@
 # Extrinsic Benchmark: Coreference Resolution
 ## Training 
 
-During training, we fine-tune the encoder on the OntoNotes 5.0 dataset (Weischedel et al., 2013) using a [Pytorch implementation](https://github.com/lxucs/coref-hoi) of a span-based, e2e coref model (Xu and Choi, 2020). We follow their default hyper-parameters and don't use any higher-order inference methods. 
+During training, we fine-tune the language model of choice on the OntoNotes 5.0 dataset (Weischedel et al., 2013) using a [Pytorch implementation](https://github.com/lxucs/coref-hoi) of a span-based, e2e coref model (Xu and Choi, 2020). We follow their default hyper-parameters and don't use any higher-order inference methods. 
 
-Note: We use the **cased** version of all models - with uncased models, the fine-tuned performance deteriorates significantly. 
+Note: We use the **cased** version of all models - with uncased models, the fine-tuning performance deteriorates significantly. 
  
-In the `experiments.conf` section, set `data_dir` appropriately. The training command is
+In `experiments.conf`, set `data_dir` appropriately. The training command is
 
 ```
 python run.py train_mabel [gpu_id]
