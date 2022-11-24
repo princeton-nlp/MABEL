@@ -13,12 +13,14 @@ This approach exhibits a good fairness-performance tradeoff across intrinsic and
 
 ## Table of Contents
   * [Quick Start](#quick-start)
+  * [Model List](#model-list)
   * [Training](#training)
   * [Evaluation](#evaluation)
     + [Intrinsic Metrics](#intrinsic-metrics)
     + [Extrinsic Metrics](#extrinsic-metrics)
     + [Language Understanding](#language-understanding)
   * [Code Acknowledgements](#code-acknowledgements)
+  * [Citation](#citation)
 
 ## Quick Start
 
@@ -31,6 +33,13 @@ tokenizer = AutoTokenizer.from_pretrained("princeton-nlp/mabel-bert-base-uncased
 
 model = AutoModelForMaskedLM.from_pretrained("princeton-nlp/mabel-bert-base-uncased")
 ```
+
+## Model List
+
+|              MABEL Models              |
+|:-------------------------------|
+|  [princeton-nlp/mabel-bert-base-uncased](https://huggingface.co/princeton-nlp/mabel-bert-base-uncased) | 
+| [princeton-nlp/mabel-bert-large-uncased](https://huggingface.co/princeton-nlp/mabel-bert-large-uncased) |   
 
 ## Training
 
@@ -184,3 +193,13 @@ Output:
 - Evaluation code for GLUE relies on the Huggingface implementation of the [transformers](https://arxiv.org/abs/1910.03771) (Wolf et al., 2019) package.
 - Training and evaluation for e2e span-based coreference resolution follows from [this Pytorch implementation](https://aclanthology.org/2020.emnlp-main.686/) (Xu and Choi, 2020).
 - Repository is formatted with [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black).
+
+## Citation
+```bibtex
+@inproceedings{he2022mabel,
+   title={{MABEL}: Attenuating Gender Bias using Textual Entailment Data},
+   author={He, Jacqueline and Xia, Mengzhou and Fellbaum, Christiane and Chen, Danqi},
+   booktitle={Empirical Methods in Natural Language Processing (EMNLP)},
+   year={2022}
+}
+```
