@@ -16,17 +16,17 @@ Alternatively, you can also download our processed version of the Bias-NLI datas
 The training arguments are stored in `run.sh`. At its present state, the script fine-tunes on SNLI data with MABEL and stores checkpoints in `nli-mabel`. 
 We take the fine-tuned checkpoint that performs the best on the SNLI validation set for evaluation on Bias-NLI. 
 
-```
+```bash
 chmod +x run.sh && ./run.sh
 ```
 
 ### Evaluation
 
-```
+```bash
 python eval.py --load-from-file nli-mabel/checkpoint_best.pt --data-path bias-nli.csv
 ```
 
-We provide the MABEL checkpoint from the Drive link [here](https://drive.google.com/file/d/1cOSnepKz0o_577oeYmgq8fgk5P9-83Vk/view?usp=sharing). Running evaluation gives the following numbers:
+With the `princeton-nlp/mabel-bert-base-uncased` checkpoint provided below, running evaluation gives the following numbers:
 
 ```
 total net neutral:        0.9170128866319063
@@ -35,6 +35,14 @@ total tau 0.5 neutral:    0.9824839530908697
 total tau 0.7 neutral:    0.9681385585408803
 ```
 
+### Collective Results
+
+|              Models       | NN ↑ | FN ↑ | T:0.5 ↑ | T:0.7 ↑ |
+|:-------------------------------|:------|:------|:------|:------|
+| bert-base-uncased | 0.839	| 0.927	| 0.922	| 0.853 |
+|  [princeton-nlp/mabel-bert-base-uncased](https://drive.google.com/file/d/1cOSnepKz0o_577oeYmgq8fgk5P9-83Vk/view?usp=sharing) | 0.917 |  0.983 | 0.982 | 0.968 |
+| bert-large-uncased | 0.773 |	0.906 |	0.892 |	0.745 |
+|  [princeton-nlp/mabel-bert-large-uncased]() |0.878 |	0.973 |	0.970 |	0.909 |
 
 ## Misc.
 

@@ -36,10 +36,12 @@ model = AutoModelForMaskedLM.from_pretrained("princeton-nlp/mabel-bert-base-unca
 
 ## Model List
 
-|              MABEL Models              |
-|:-------------------------------|
-|  [princeton-nlp/mabel-bert-base-uncased](https://huggingface.co/princeton-nlp/mabel-bert-base-uncased) | 
-| [princeton-nlp/mabel-bert-large-uncased](https://huggingface.co/princeton-nlp/mabel-bert-large-uncased) |   
+|              MABEL Models       | ICAT ↑ |
+|:-------------------------------|:------|
+|  [princeton-nlp/mabel-bert-base-uncased](https://huggingface.co/princeton-nlp/mabel-bert-base-uncased) | 73.98 | 
+| [princeton-nlp/mabel-bert-large-uncased](https://huggingface.co/princeton-nlp/mabel-bert-large-uncased) |  73.45 |
+
+Note: The ICAT score is a bias metric that consolidates a model's capacity for language modeling and stereotypical association into a single indicator. More information can be found in the [StereoSet](https://aclanthology.org/2021.acl-long.416.pdf) (Nangia et al., 2021) paper.
 
 ## Training
 
@@ -86,6 +88,16 @@ SS Score: 56.248299466465376
 ICAT Score: 73.98003496789251
 ```
 
+Collective Results:
+|              Models       | LM ↑ | SS ◇| ICAT ↑ |
+|:-------------------------------|:------|:------|:------|
+| bert-base-uncased | 84.17 | 60.28 | 66.86 | 
+|  princeton-nlp/mabel-bert-base-uncased | 84.54 | 56.25 | 73.98 | 
+| bert-large-uncased | 86.54 | 63.24 | 63.62 | 
+|  princeton-nlp/mabel-bert-large-uncased | 84.93 | 56.76 |  73.45 |
+
+◇: The closer to 50, the better.
+
 **2. CrowS-Pairs ([Nangia et al., 2021](https://aclanthology.org/2020.emnlp-main.154/))** 
 
 Command: 
@@ -106,19 +118,29 @@ Num. neutral: 0.0
 ====================================================================================================
 ```
 
+Collective Results:
+|              Models       | Metric Score ◇ |
+|:-------------------------------|:------|
+| bert-base-uncased | 57.25 |
+|  princeton-nlp/mabel-bert-base-uncased |50.76 | 
+| bert-large-uncased | 55.73 |
+|  princeton-nlp/mabel-bert-large-uncased | 51.15 |
+
+◇: The closer to 50, the better.
+
 ### Extrinsic Metrics
 
 1. Occupation Classification 
 
-See `benchmark/extrinsic/occ_cls/README.md` for full training instructions.
+See `benchmark/extrinsic/occ_cls/README.md` for full training instructions and results.
 
 2. Natural Language Inference
 
-See `benchmark/extrinsic/nli/README.md` for full training instructions.
+See `benchmark/extrinsic/nli/README.md` for full training instructions and results.
 
 3. Coreference Resolution
 
-See `benchmark/extrinsic/coref/README.md` for full training instructions.
+See `benchmark/extrinsic/coref/README.md` for full training instructions and results.
 
 
 ### Language Understanding 
@@ -162,7 +184,6 @@ CUDA_VISIBLE_DEVICES=0 python run_glue.py \
 ```
 
 
-
 **2. SentEval Transfer Tasks ([Conneau et al., 2018](https://arxiv.org/abs/1803.05449))**
 
 Preprocess:
@@ -184,6 +205,14 @@ Output:
 | 78.33 | 85.83 | 93.78 | 89.13 | 85.50 | 85.20 | 68.87 | 83.81 |
 +-------+-------+-------+-------+-------+-------+-------+-------+
 ```
+
+Collective Results:
+|              Models       | Transfer Avg. ↑ |
+|:-------------------------------|:------|
+| bert-base-uncased | 83.73 |
+|  princeton-nlp/mabel-bert-base-uncased |83.81 | 
+| bert-large-uncased | 86.54 |
+|  princeton-nlp/mabel-bert-large-uncased | 86.09 |
 
 
 ## Code Acknowledgements

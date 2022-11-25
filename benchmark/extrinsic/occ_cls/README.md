@@ -17,12 +17,12 @@ MABEL will periodically evaluate on the validation set, and save the checkpoint 
 
 Run this command to evaluate MABEL:
 
-```
-best=bios-mabel/best_checkpoint.pt // replace with best ckpt path
+```bash
+best=bios-mabel/best_checkpoint.pt // replace with the best ckpt path
 python eval.py --load_from_file ${best}
 ```
 
-You can find our fine-tuned checkpoint for MABEL [here](https://drive.google.com/file/d/1MP-8sAf3YJk279Dj1S54QYBtaQDgB4kc/view?usp=sharing). Evaluating this checkpoint will produce the following:
+Evaluating our fine-tuned checkpoint for `princeton-nlp/mabel-bert-base-uncased` below will produce the following:
 
 ```
 Bias-in-Bios evaluation results:
@@ -33,6 +33,15 @@ Bias-in-Bios evaluation results:
  - tpr gap: 0.6047056409637652
  - tpr rms: 0.1340815229504565
 ```
+
+### Collective Results
+
+|              Models       | Acc. (All) ↑ | Acc. (M) ↑ | Acc. (F)  ↑ | TPR-GAP ↓| TPR-RMS ↓|  
+|:-------------------------------|:------|:------|:------|:------|:------|
+| bert-base-uncased | 83.68	| 84.18	| 83.10	| 1.080 | 	0.152 | 
+| [princeton-nlp/mabel-bert-base-uncased](https://drive.google.com/file/d/1MP-8sAf3YJk279Dj1S54QYBtaQDgB4kc/view?usp=sharing) |84.43 |  84.71 | 84.10 | 0.605 | 0.134 |
+| bert-large-uncased | 85.83	| 84.97	| 85.44	| 0.862	| 0.130 |
+| [princeton-nlp/mabel-bert-large-uncased]() | 85.31 |	84.52 | 84.95 |	0.794 |	0.127 |
 
 ## Misc.
 For the linear probing experiments in **Appendix I**, simply re-run the experiments with the `--fix-encoder` flag. 
