@@ -41,7 +41,7 @@ Bias-in-Bios evaluation results:
 | bert-base-uncased | 83.68	| 84.18	| 83.10	| 1.080 | 	0.152 | 
 | [princeton-nlp/mabel-bert-base-uncased](https://drive.google.com/file/d/1MP-8sAf3YJk279Dj1S54QYBtaQDgB4kc/view?usp=sharing) |84.43 |  84.71 | 84.10 | 0.605 | 0.134 |
 | bert-large-uncased | 85.83	| 84.97	| 85.44	| 0.862	| 0.130 |
-| [princeton-nlp/mabel-bert-large-uncased]() | 85.31 |	84.52 | 84.95 |	0.794 |	0.127 |
+| [princeton-nlp/mabel-bert-large-uncased](https://drive.google.com/file/d/1QObJeXJFrs_hKSzIF2SSIuzpwUakidZh/view?usp=sharing) | 85.31 |	84.52 | 84.95 |	0.794 |	0.127 |
 
 ## Misc.
 For the linear probing experiments in **Appendix I**, simply re-run the experiments with the `--fix-encoder` flag. 

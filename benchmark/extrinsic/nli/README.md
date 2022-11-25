@@ -42,7 +42,7 @@ total tau 0.7 neutral:    0.9681385585408803
 | bert-base-uncased | 0.839	| 0.927	| 0.922	| 0.853 |
 |  [princeton-nlp/mabel-bert-base-uncased](https://drive.google.com/file/d/1cOSnepKz0o_577oeYmgq8fgk5P9-83Vk/view?usp=sharing) | 0.917 |  0.983 | 0.982 | 0.968 |
 | bert-large-uncased | 0.773 |	0.906 |	0.892 |	0.745 |
-|  [princeton-nlp/mabel-bert-large-uncased]() |0.878 |	0.973 |	0.970 |	0.909 |
+|  [princeton-nlp/mabel-bert-large-uncased](https://drive.google.com/file/d/1rD16ZKkAAG1PrPWh66ElaEI6hpsQueiu/view?usp=sharing) |0.878 |	0.973 |	0.970 |	0.909 |
 
 ## Misc.
 
