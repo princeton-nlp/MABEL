@@ -41,7 +41,7 @@ model = AutoModelForMaskedLM.from_pretrained("princeton-nlp/mabel-bert-base-unca
 |  [princeton-nlp/mabel-bert-base-uncased](https://huggingface.co/princeton-nlp/mabel-bert-base-uncased) | 73.98 | 
 | [princeton-nlp/mabel-bert-large-uncased](https://huggingface.co/princeton-nlp/mabel-bert-large-uncased) |  73.45 |
 
-Note: The ICAT score is a bias metric that consolidates a model's capacity for language modeling and stereotypical association into a single indicator. More information can be found in the [StereoSet](https://aclanthology.org/2021.acl-long.416.pdf) (Nangia et al., 2021) paper.
+Note: The ICAT score is a bias metric that consolidates a model's capacity for language modeling and stereotypical association into a single indicator. More information can be found in the [StereoSet](https://aclanthology.org/2021.acl-long.416.pdf) (Nadeem et al., 2021) paper.
 
 ## Training
 
