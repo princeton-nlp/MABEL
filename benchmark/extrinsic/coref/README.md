@@ -8,7 +8,7 @@ Note: We use the **cased** version of all models—with uncased models, the fine
 In `experiments.conf`, set `data_dir` appropriately. The training command is
 
 ```bash
-python run.py train_mabel [gpu_id]
+python run.py train_mabel_bert_base [gpu_id]
 ```
 
 Training takes <6 hours on a single NVIDIA V100 GPU.
