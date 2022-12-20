@@ -83,8 +83,8 @@ class DocumentState(object):
                     speakers.append("[SPL]")
                 elif subtoken_info is not None:  # First subtoken of each word
                     speakers.append(subtoken_info[9])
-                    # if subtoken_info[4] == 'PRP':  # Uncomment if needed
-                    #     self.pronouns.append(subtoken_idx)
+                    if subtoken_info[4] == "PRP":  # Uncomment if needed
+                        self.pronouns.append(subtoken_idx)
                 else:
                     speakers.append(speakers[-1])
                 subtoken_idx += 1

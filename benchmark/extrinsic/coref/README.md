@@ -1,7 +1,15 @@
 # Extrinsic Benchmark: Coreference Resolution
+## Data Pre-processing
+To prepare the OntoNotes 5.0 dataset (Weischedel et al., 2013) dataset for training, you can run the following script:
+
+```bash
+model=... // encoder of choice
+chmod +x setup_data.sh && ./setup_data.sh /path/to/ontonotes /path/to/processed/data model
+```
+
 ## Training 
 
-During training, we fine-tune the language model of choice on the OntoNotes 5.0 dataset (Weischedel et al., 2013) using a [Pytorch implementation](https://github.com/lxucs/coref-hoi) of a span-based, e2e coref model (Xu and Choi, 2020). We follow their default hyper-parameters and don't use any higher-order inference methods. 
+During training, we fine-tune a span-based, e2e coref model (Xu and Choi, 2020) using this [Pytorch implementation](https://github.com/lxucs/coref-hoi). We follow all default hyper-parameters and don't use any higher-order inference methods. 
 
 Note: We use the **cased** version of all models—with uncased models, the fine-tuning performance deteriorates significantly. 
  
@@ -18,11 +26,11 @@ Training takes <6 hours on a single NVIDIA V100 GPU.
 We evaluate the fine-tuned coreference resolution models on the [WinoBias](https://uclanlp.github.io/corefBias/overview) benchmark (Zhao et al., 2018).  You can follow their processing instructions and have the data formatted as `.jsonlines`. Assuming the processed WinoBias files have been stored in the `/wb` folder, you can run this script to obtain the predictions: 
 
 ```bash
-CONFIG=mabel
+CONFIG=train_mabel_base
 MODEL_CKPT=...
 for PATH in type1_anti type1_pro type2_anti type2_pro;
 do
-  python predict.py --config_name=train_${CONFIG}_base --model_identifier=${MODEL_CKPT} --gpu_id=0 \
+  python predict.py --config_name=${CONFIG} --model_identifier=${MODEL_CKPT} --gpu_id=0 \
   --jsonlines_path=wb/${PATH}.jsonlines --output_path=scores/${CONFIG}-${PATH}.json
 done
 ```

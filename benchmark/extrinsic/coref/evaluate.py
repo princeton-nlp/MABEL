@@ -2,7 +2,7 @@ from run import Runner
 import sys
 
 
-def evaluate(config_name, gpu_id, saved_suffix):
+def evaluate(config_name, saved_suffix, gpu_id):
     runner = Runner(config_name, gpu_id)
     model = runner.initialize_model(saved_suffix)
 
@@ -22,4 +22,4 @@ def evaluate(config_name, gpu_id, saved_suffix):
 
 if __name__ == "__main__":
     config_name, saved_suffix, gpu_id = sys.argv[1], sys.argv[2], int(sys.argv[3])
-    evaluate(config_name, gpu_id, saved_suffix)
+    evaluate(config_name, saved_suffix, gpu_id)

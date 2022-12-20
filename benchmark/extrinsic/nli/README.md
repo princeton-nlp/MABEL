@@ -23,7 +23,7 @@ chmod +x run.sh && ./run.sh
 ### Evaluation
 
 ```bash
-python eval.py --load-from-file nli-mabel/checkpoint_best.pt --data-path bias-nli.csv
+python eval.py --model-name-or-path bert-base-uncased --load-from-file nli-mabel/checkpoint_best.pt --eval-data-path bias-nli.csv
 ```
 
 With the `princeton-nlp/mabel-bert-base-uncased` checkpoint provided below, running evaluation gives the following numbers:

@@ -34,7 +34,7 @@ def main():
     parser.add_argument("--tau", type=float, default=0.5)
     parser.add_argument("--tau2", type=float, default=0.7)
     parser.add_argument("--cache_dir", default=None, type=str, help="cache directory")
-    parser.add_argument("--model_name_or_path", default="bert-base-uncased")
+    parser.add_argument("--model_name_or_path", type=str, default="bert-base-uncased")
     parser.add_argument("--eval_data_path", type=str, default="bias-nli.csv")
     parser.add_argument(
         "--load_from_file",
@@ -93,12 +93,19 @@ def main():
         attention_mask = torch.transpose(torch.stack(batch["attention_mask"]), 0, 1).to(
             args.device
         )
-        token_type_ids = torch.transpose(torch.stack(batch["token_type_ids"]), 0, 1).to(
-            args.device
-        )
+
         labels = torch.tensor(batch["label"]).long().to(args.device)
 
-        output = model.forward_eval(input_ids, attention_mask, token_type_ids, labels)
+        if "token_type_ids" in batch:
+            token_type_ids = torch.transpose(
+                torch.stack(batch["token_type_ids"]), 0, 1
+            ).to(args.device)
+            output = model.forward_eval(
+                input_ids, attention_mask, token_type_ids, labels
+            )
+        else:
+            output = model.forward_eval(input_ids, attention_mask, None, labels)
+
         res = torch.softmax(output.logits, axis=1)
         preds = res.argmax(1)
         denom += len(preds)
