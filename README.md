@@ -40,6 +40,8 @@ model = AutoModelForMaskedLM.from_pretrained("princeton-nlp/mabel-bert-base-unca
 |:-------------------------------|:------|
 |  [princeton-nlp/mabel-bert-base-uncased](https://huggingface.co/princeton-nlp/mabel-bert-base-uncased) | 73.98 | 
 | [princeton-nlp/mabel-bert-large-uncased](https://huggingface.co/princeton-nlp/mabel-bert-large-uncased) |  73.45 |
+| [princeton-nlp/mabel-roberta-base](https://huggingface.co/princeton-nlp/mabel-roberta-base) |  69.68 |
+| [princeton-nlp/mabel-roberta-large](https://huggingface.co/princeton-nlp/mabel-roberta-large) |  69.49 |
 
 Note: The ICAT score is a bias metric that consolidates a model's capacity for language modeling and stereotypical association into a single numerical indicator. More information can be found in the [StereoSet](https://aclanthology.org/2021.acl-long.416.pdf) (Nadeem et al., 2021) paper.
 
@@ -98,6 +100,11 @@ Collective Results:
 |  princeton-nlp/mabel-bert-base-uncased | 84.54 | 56.25 | 73.98 | 
 | bert-large-uncased | 86.54 | 63.24 | 63.62 | 
 |  princeton-nlp/mabel-bert-large-uncased | 84.93 | 56.76 |  73.45 |
+| roberta-base | 88.93 | 66.32 | 59.90 | 
+|  princeton-nlp/mabel-roberta-base | 87.44 | 60.14 |  69.68 |
+| roberta-large | 88.81 | 66.82 | 58.92 | 
+|  princeton-nlp/mabel-roberta-large | 89.72 | 61.28 |  69.49 |
+
 
 ◇: The closer to 50, the better.
 
@@ -128,7 +135,10 @@ Collective Results:
 |  princeton-nlp/mabel-bert-base-uncased |50.76 | 
 | bert-large-uncased | 55.73 |
 |  princeton-nlp/mabel-bert-large-uncased | 51.15 |
-
+| roberta-base | 60.15 | 
+|  princeton-nlp/mabel-roberta-base | 49.04 | 
+| roberta-large | 60.15 | 
+|  princeton-nlp/mabel-roberta-large | 54.41 | 
 ◇: The closer to 50, the better.
 
 ### Extrinsic Metrics

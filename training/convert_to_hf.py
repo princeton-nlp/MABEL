@@ -34,10 +34,11 @@ def main():
     for k, v in list(lm_dict.items()):
         new_dict[k.replace("lm_head.", "")] = lm_dict.pop(k)
 
-    try:
-        model.cls.predictions.load_state_dict(new_dict)
-    except:
-        raise Exception("Unable to copy LM weights over")
+    if args.base_model == "bert":
+        try:
+            model.cls.predictions.load_state_dict(new_dict)
+        except:
+            raise Exception("Unable to copy LM weights over")
 
     torch.save(model.state_dict(), os.path.join(args.path, "pytorch_model.bin"))
 
