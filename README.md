@@ -62,7 +62,7 @@ cd training
 chmod +x run.sh 
 ./run.sh
 ```
-You can configure the hyper-parameters in `run.sh` accordingly. Models are saved to `out/`.  
+You can configure the hyper-parameters in `run.sh` accordingly. Models are saved to `out/`. The optimal set of hyper-parameters varies depending on the choice of backbone encoder, and the full training details can be found in the paper.   
 
 ## Evaluation
 
@@ -139,6 +139,7 @@ Collective Results:
 |  princeton-nlp/mabel-roberta-base | 49.04 | 
 | roberta-large | 60.15 | 
 |  princeton-nlp/mabel-roberta-large | 54.41 | 
+
 ◇: The closer to 50, the better.
 
 ### Extrinsic Metrics
