@@ -121,8 +121,8 @@ def cl_init(cls, config):
     cls.pooler = Pooler(cls.model_args.pooler_type)
     if cls.model_args.pooler_type == "cls":
         cls.mlp = MLPLayer(config)
-    cls.c_sim = Similarity(temp=cls.model_args.temp)
-    cls.a_sim = Similarity(temp=0.05)
+    cls.c_sim = Similarity(temp=cls.model_args.softmax_temp)
+    cls.a_sim = Similarity(temp=cls.model_args.align_temp)
     cls.init_weights()
 
 

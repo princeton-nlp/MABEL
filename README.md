@@ -68,7 +68,7 @@ You can configure the hyper-parameters in `run.sh` accordingly. Models are saved
 
 ### Intrinsic Metrics 
 
-If you use your own trained model instead of our provided HF checkpoint, you must first run `python -m training.convert_to_hf --path /path/to/your/checkpoint --base_model bert` (which converts the checkpoint to a standard BertForMaskedLM model - use `--base_model roberta` for RobertaForMaskedLM) prior to intrinsic evaluation.
+If you use your own trained model instead of our provided HF checkpoint, you must first run `python -m training.convert_to_hf --path /path/to/your/checkpoint --base-model bert` (which converts the checkpoint to a standard BertForMaskedLM model - use `--base_model roberta` for RobertaForMaskedLM) prior to intrinsic evaluation.
 
 Also, please note that we use [Meade et al.'s](https://arxiv.org/abs/2110.08527) method of computation and datasets for both StereoSet and CrowS-Pairs; this is why the metrics for the pre-trained models are not directly comparable to those reported in the original benchmark papers. 
 

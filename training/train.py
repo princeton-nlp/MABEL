@@ -290,7 +290,7 @@ def main():
             json_file=os.path.abspath(sys.argv[1])
         )
     else:
-        model_args, data_args, training_args = parser.parse_args_into_dataclasses()
+        model_args, data_args, training_args, remaining = parser.parse_args_into_dataclasses(return_remaining_strings=True)
 
     if (
         os.path.exists(training_args.output_dir)
@@ -425,8 +425,6 @@ def main():
             raise NotImplementedError
     else:
         raise NotImplementedError
-        logger.info("Training new model from scratch")
-        model = AutoModelForMaskedLM.from_config(config)
 
     model.resize_token_embeddings(len(tokenizer))
 
