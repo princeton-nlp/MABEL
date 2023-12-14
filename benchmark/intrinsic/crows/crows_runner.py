@@ -160,7 +160,7 @@ class CrowSPairsRunner:
                     sent_more_score = score2
                     sent_less_score = score1
 
-                df_score = df_score.append(
+                df_score = df_score._append(
                     {
                         "sent_more": sent_more,
                         "sent_less": sent_less,
@@ -418,7 +418,7 @@ class CrowSPairsRunner:
                     "direction": direction,
                     "bias_type": bias_type,
                 }
-                df_data = df_data.append(df_item, ignore_index=True)
+                df_data = df_data._append(df_item, ignore_index=True)
 
         return df_data
 
