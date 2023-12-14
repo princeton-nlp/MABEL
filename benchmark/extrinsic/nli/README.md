@@ -9,7 +9,7 @@ In this task, we train on the [SNLI](https://nlp.stanford.edu/projects/snli/) da
 The SNLI data is automatically downloaded from HuggingFace during training, but you must manually process the evaluation data 
 following instructions from the [code repo](https://github.com/sunipa/On-Measuring-and-Mitigating-Biased-Inferences-of-Word-Embeddings) for "On Measuring and Mitigating Biased Inferences of Word Embeddings." Please ensure that the Bias-NLI data is formatted in the same way as the SNLI dataset from HuggingFace; that is, in a `.csv` file with the columns `[premise, hypothesis, label]` and stored under this directory as `bias-nli.csv`. 
 
-Alternatively, you can also download our processed version of the Bias-NLI dataset from the Drive link [here](https://drive.google.com/file/d/1eC003yjOHjkp5-TGyVXW1emlV80qB7Yl/view?usp=sharing). 
+Alternatively, you can also download our processed version of the Bias-NLI dataset from the Drive link [here](https://drive.google.com/file/d/1cY5PZgUVJcsWgtOODGWmPz8qxnHoPc8t/view?usp=sharing). 
 
 ### Training
 
